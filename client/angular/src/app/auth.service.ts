@@ -5,6 +5,8 @@ import * as firebase from 'firebase/app';
 
 import { Observable } from 'rxjs/Observable';
 
+
+
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
@@ -44,6 +46,8 @@ export class AuthService {
       .signOut();
   }
   
+  
+
   
 
 }

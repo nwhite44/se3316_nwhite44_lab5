@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "https://lab4-part2-nwhite44.c9users.io:8080",
+        "target": "https://lab5-nwhite44.c9users.io:8081",
         "secure": false,
         "changeOrigin": true,
         "logLevel": "info"
