@@ -1,6 +1,6 @@
 
 
-<h2 *ngIf="authService.user | async">Welcome {{ (authService.user | async)?.email }}!</h2>
+<h3 *ngIf="authService.user | async">Logged in as {{ (authService.user | async)?.email }}!</h3>
 
 <div *ngIf="!(authService.user | async)">
   <h2> Please sign up or login!</h2>

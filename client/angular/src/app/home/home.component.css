@@ -1,4 +1,5 @@
  mat-expansion-panel {
+    margin: auto;
     width: 700px;
     
     background-color: rgb(187,209,247);

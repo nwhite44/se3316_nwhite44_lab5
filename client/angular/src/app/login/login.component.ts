@@ -13,20 +13,35 @@ export class LoginComponent {
   email: string;
   password: string;
   private _response: Observable<any[]>;
+  
+  userList: Users[];
 
   constructor(public authService: AuthService, public usersService: UsersService) {}
+  
+  ngOnInit() {
+    
+    this.usersService.getUsers(this.onResponse.bind(this));
+   
+    
+ 
+    
+  }
 
   signup() {
     
     console.log(this.email)
     this.authService.signup(this.email, this.password);
     this.usersService.postUser(this.email,  this.onResponse.bind(this));
+    this.getAccessLevel();
     this.email = this.password = '';
   
   }
 
   login() {
     this.authService.login(this.email, this.password);
+    
+    this.getAccessLevel();
+    
     this.email = this.password = '';    
   }
 
@@ -34,7 +49,30 @@ export class LoginComponent {
     this.authService.logout();
   }
   
-  onResponse(_res: Observable<any[]>){
-    this._response = _res;
+//  onResponse(_res: Observable<any[]>){
+//    this._response = _res;
+//  }
+  
+  onResponse(users){
+    this.userList = users;
   }
+
+  getAccessLevel(){
+
+     var iterate = this.userList;
+    for(var i = (iterate.length-1); i>=0; i--){
+      if(iterate[i].email == this.email){
+        console.log("found!");
+        console.log(iterate[i].accessLevel);
+      }
+    }
+  }
+
+}
+
+interface Users{
+  _id: string,
+  email: string,
+  accessLevel: number
+  
 }

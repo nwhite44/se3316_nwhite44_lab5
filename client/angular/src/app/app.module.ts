@@ -26,6 +26,7 @@ import {ProductsService} from './services/products.service';
 
 //Material Imports
 import {MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatExpansionModule} from '@angular/material';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -39,7 +40,8 @@ import {MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatL
     LoginComponent,
     MainNavComponent,
     ProductsComponent,
-    HomeComponent
+    HomeComponent,
+    CartComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

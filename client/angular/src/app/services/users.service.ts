@@ -15,4 +15,12 @@ export class UsersService {
         });
   }
   
+  
+  getUsers(call_back){
+    
+    this.http.get('/api/create/user').subscribe(users => {
+      call_back(users);
+    })
+  }
+  
 }

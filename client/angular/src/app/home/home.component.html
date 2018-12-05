@@ -6,44 +6,48 @@
       <h1>
         Welcome to the store!
       </h1>
-    </div>
-    <app-login></app-login>
+    
+        <app-login></app-login>
   
      
-     <div style="text-align:center">
-         <h3>
-             <br/>
-             This is a web application where you can buy fish!<br/>
-             If you create an account and sign in you can view<br/>
-             all of the different fish we sell. 
+  
+        <h3>
+            <br/>
+            This is a web application where you can buy fish!<br/>
+            If you create an account and sign in you can view<br/>
+            all of the different fish we sell. 
              
-         </h3>
+        </h3>
          
-     </div>
-      
+             
+             <br/>
+    
    
     
-    <h1>Our Fish</h1>
-    <div *ngFor= "let product of products">
+        <h1>Our Popular Fish!</h1>
+        <div *ngFor= "let product of allProducts">
+            
+            <mat-expansion-panel width="200">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+            
+                  </mat-panel-title>
+                  <mat-panel-description>
+                          <h3> {{product.name}} </h3>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <h3 >${{product.price}}.00 each</h3>
+                <p>{{product.desc}}</p>
+                <h4>There are currently {{product.quantity}} of this fish in stock!</h4>
+                <h6 style="text-align:right"> Views: {{product.views}}</h6>
+            </mat-expansion-panel>
+    
+            
+            <br/>
+            
+        </div>     
         
-        <mat-expansion-panel width="200">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-        
-              </mat-panel-title>
-              <mat-panel-description>
-                      <h3> {{product.name}} </h3>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <h3 >${{product.price}}.00 each</h3>
-            <p>{{product.desc}}</p>
-            <h4>There are currently {{product.quantity}} of this fish in stock!</h4>
-        </mat-expansion-panel>
-
-        
-        <br/>
-        
-    </div>     
+    </div>
     
 </app-main-nav>
 

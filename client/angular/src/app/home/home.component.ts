@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   
- products: Products[];
+ allProducts: Products[];
+ top5: Products[];
 
   constructor(private productsService: ProductsService) { }
 
@@ -17,19 +18,27 @@ export class HomeComponent implements OnInit {
     
     this.productsService.getProducts(this.onResponse.bind(this));
     
-    
+ 
     
   }
   
    onResponse(products){
-    this.products = products;
+    this.allProducts = products;
+    
+    var iterate = this.allProducts
+   iterate.sort(function(a,b){
+     return a.views-b.views
+   });
+   iterate.reverse();
+   
+   for(var i = (iterate.length-1); i>4; i--){
+   iterate.pop();
+   }
+   
   }
   
-  orderProducts(products: Products[]){
-    
-    
-    
-  }
+  
+  
 
 }
 
