@@ -1,0 +1,8 @@
+ mat-expansion-panel {
+    width: 700px;
+    
+    background-color: rgb(187,209,247);
+  }
+  mat-expansion-panel-header{
+      height: 70px;
+  }
