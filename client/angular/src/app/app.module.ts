@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './auth.service';
 
-import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,21 +16,29 @@ import {MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatL
 
 import {UsersService} from './services/users.service';
 import { MainNavComponent } from './main-nav/main-nav.component';
-import { LayoutModule } from '@angular/cdk/layout'
+import { LayoutModule } from '@angular/cdk/layout';
+import { ProductsComponent } from './products/products.component';
+import {RouterModule} from '@angular/router';
+import { HomeComponent } from './home/home.component';
+
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MainNavComponent
+    MainNavComponent,
+    ProductsComponent,
+    HomeComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
+
     BrowserAnimationsModule,
     MatButtonModule,
     HttpClientModule,
@@ -38,7 +46,22 @@ import { LayoutModule } from '@angular/cdk/layout'
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: HomeComponent
+      },
+      {
+        path: 'products',
+        component: ProductsComponent
+      }
+      
+      ])
+    
+    
+    
+ 
   ],
   providers: [AuthService, UsersService],
   bootstrap: [AppComponent]
