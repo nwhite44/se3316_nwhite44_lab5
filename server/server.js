@@ -45,7 +45,9 @@ router.route('/create/product')
         var product = new Product();
          product.name = req.body.name;  
          product.price = req.body.price;  
+         product.desc = req.body.desc;
          product.quantity = req.body.quantity;
+         product.views = 0;
        
     
         
@@ -70,7 +72,6 @@ router.route('/create/product')
     });
 
 
-
 router.route('/access/product/:product_id')
 
     
@@ -85,19 +86,20 @@ router.route('/access/product/:product_id')
 
     .put(function(req, res) {
 
-        // use our bear model to find the bear we want
+       
         Product.findById(req.params.product_id, function(err, product) {
 
             if (err){
                  res.send(err);
             }
-           product.name = req.body.name;  // update the bears info
+           product.name = req.body.name;  
            product.price = req.body.price;  
            product.quantity = req.body.quantity;
-           product.tax = req.body.tax;
+           product.views = req.body.views;
+         
        
 
-            // save the bear
+          
             product.save(function(err) {
                 if (err){
                     res.send(err);
