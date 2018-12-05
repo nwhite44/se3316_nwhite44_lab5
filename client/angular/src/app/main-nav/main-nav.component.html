@@ -8,6 +8,7 @@
       <a mat-list-item routerLink="">Home</a>
       <a mat-list-item routerLink="/products">Products</a>
       <a *ngIf= "authService.user | async" mat-list-item href="#">Edit Inventory</a>
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

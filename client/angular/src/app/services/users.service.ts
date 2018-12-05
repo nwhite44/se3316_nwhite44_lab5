@@ -3,8 +3,12 @@ import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class UsersService {
+  
+  
 
   constructor(private http: HttpClient) { }
+  
+
   
   postUser( email: string, call_back){
         console.log(email);

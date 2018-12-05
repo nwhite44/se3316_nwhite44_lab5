@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class LoginComponent {
   email: string;
   password: string;
+  accessLevel: number;
   private _response: Observable<any[]>;
   
   userList: Users[];
@@ -21,8 +22,9 @@ export class LoginComponent {
   ngOnInit() {
     
     this.usersService.getUsers(this.onResponse.bind(this));
+    console.log("init");
    
-    
+  
  
     
   }
@@ -55,6 +57,13 @@ export class LoginComponent {
   
   onResponse(users){
     this.userList = users;
+    
+      var iterate = this.userList;
+    for(var i = (iterate.length-1); i>=0; i--){
+      if(iterate[i].email == this.email){
+        this.accessLevel = iterate[i].accessLevel;
+      }
+    }
   }
 
   getAccessLevel(){
@@ -62,8 +71,8 @@ export class LoginComponent {
      var iterate = this.userList;
     for(var i = (iterate.length-1); i>=0; i--){
       if(iterate[i].email == this.email){
-        console.log("found!");
-        console.log(iterate[i].accessLevel);
+        this.accessLevel = iterate[i].accessLevel;
+        //console.log(iterate[i].accessLevel);
       }
     }
   }

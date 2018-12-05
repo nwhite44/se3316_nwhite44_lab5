@@ -1,5 +1,32 @@
 <app-main-nav>
-
-<h1>Here are all of the products!</h1>
+    
+    
+      <div style="text-align:center">
+    
+        <h1>Full Catalogue!</h1>
+    
+          <div *ngFor= "let product of allProducts">
+                
+                <mat-expansion-panel width="200">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                
+                      </mat-panel-title>
+                      <mat-panel-description>
+                              <h3> {{product.name}} </h3>
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <h3 >${{product.price}}.00 each</h3>
+                    <p>{{product.desc}}</p>
+                    <h4>There are currently {{product.quantity}} of this fish in stock!</h4>
+                    <h6 style="text-align:right"> Views: {{product.views}}</h6>
+                </mat-expansion-panel>
+        
+                
+                <br/>
+                
+            </div>
+            
+        </div>
 
 </app-main-nav>
