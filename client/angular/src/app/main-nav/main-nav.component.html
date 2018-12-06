@@ -7,7 +7,9 @@
     <mat-nav-list>
       <a mat-list-item routerLink="">Home</a>
       <a mat-list-item routerLink="/products">Products</a>
-      <a *ngIf="isAccessLevel2()" mat-list-item href="#">Edit Inventory</a>
+      <a *ngIf="isAccessLevel1()" mat-list-item routerLink="/cart">My Cart</a>
+      <a *ngIf="isAccessLevel2()" mat-list-item routerLink="/inventory">Edit Inventory</a>
+      <a *ngIf="isAccessLevel3()" mat-list-item routerLink="/admin">Edit Users</a>
       
     </mat-nav-list>
   </mat-sidenav>
@@ -24,7 +26,7 @@
       
     
         <span>Nick's Aquatic Warehouse</span>
-         <span *ngIf="isAccessLevel2()" class="title-right" >admin</span>
+         <span *ngIf="isAccessLevel3()" class="title-right" >admin</span>
    
     </mat-toolbar>
     <ng-content></ng-content>

@@ -9,13 +9,13 @@ export class UsersService {
   
 
   
-  postUser( email: string, call_back){
+  postUser( email: string){
         console.log(email);
        
-        this.http.post('/api/create/user', {'email' : email, 'accessLevel' : 0}).subscribe(data =>{
+        return this.http.post('/api/create/user', {'email' : email, 'accessLevel' : 1});
           console.log("POST success!");
-          call_back(data);
-        });
+        
+        
   }
   
   

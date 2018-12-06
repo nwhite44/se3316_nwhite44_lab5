@@ -1,5 +1,4 @@
-
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {UsersService} from '../services/users.service';
 import { Observable } from 'rxjs';
@@ -11,46 +10,20 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
-export class LoginComponent {
-  email: string;
-  password: string;
-  
-  private _response: Observable<any[]>;
+export class AdminComponent implements OnInit {
   
   userList: Users[];
 
-  constructor(public authService: AuthService, public usersService: UsersService) {}
-  
+  constructor(public authService: AuthService, public usersService: UsersService) { }
+
   ngOnInit() {
     
-    this.usersService.getUsers(this.onResponse.bind(this));
-    
+     this.usersService.getUsers(this.onResponse.bind(this));
   }
-
-  signup() {
-    
-    this.authService.signup(this.email, this.password);
-    this.usersService.postUser(this.email).subscribe((response)=>{});
-    this.email = this.password = '';
- 
-  
-  }
-
-  login() {
-    this.authService.login(this.email, this.password);
-     this.email = this.password = '';
-  }
-
-  logout() {
-  
-   
-    this.authService.logout();
-  }
-  
   onResponse(users){
     this.userList = users;
    

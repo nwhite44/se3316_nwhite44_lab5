@@ -18,7 +18,7 @@ import { AuthService } from '../auth.service';
 })
 export class MainNavComponent {
   
-    private _response: Observable<any[]>;
+  private _response: Observable<any[]>;
   
   userList: Users[];
 
@@ -28,10 +28,7 @@ export class MainNavComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, public authService: AuthService, public usersService: UsersService) {}
-  onResponse(users){
-    this.userList = users;
-   
-  }
+
   
     ngOnInit() {
     
@@ -39,16 +36,19 @@ export class MainNavComponent {
     
   }
 
-  
+  onResponse(users){
+    this.userList = users;
+   
+  }
 
-isAccessLevel2(){
+isAccessLevel3(){
 
   if(this.userList && !((auth().currentUser)== null)){
  
      var iterate = this.userList;
     for(var i = (iterate.length-1); i>=0; i--){
       if(iterate[i].email == (auth().currentUser.email)){
-        if(iterate[i].accessLevel ==2){
+        if(iterate[i].accessLevel >=3){
           return true;
         }
         
@@ -58,6 +58,39 @@ isAccessLevel2(){
     return false;
   }
 
+isAccessLevel2(){
+
+  if(this.userList && !((auth().currentUser)== null)){
+ 
+     var iterate = this.userList;
+    for(var i = (iterate.length-1); i>=0; i--){
+      if(iterate[i].email == (auth().currentUser.email)){
+        if(iterate[i].accessLevel >=2){
+          return true;
+        }
+        
+      }
+    }
+  }
+    return false;
+  }
+
+isAccessLevel1(){
+
+  if(this.userList && !((auth().currentUser)== null)){
+ 
+     var iterate = this.userList;
+    for(var i = (iterate.length-1); i>=0; i--){
+      if(iterate[i].email == (auth().currentUser.email)){
+        if(iterate[i].accessLevel >=1){
+          return true;
+        }
+        
+      }
+    }
+  }
+    return false;
+  }
 }
 
 interface Users{

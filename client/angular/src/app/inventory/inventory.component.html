@@ -1,0 +1,73 @@
+<app-main-nav>
+    
+      <app-login></app-login> 
+    
+    <div *ngIf="isAccessLevel2()" style="text-align:center">
+    
+     
+        
+        <h1>Edit Inventory</h1>
+        
+        <h2> Add an Item</h2>
+        <input type="text"  [(ngModel)]="name"  placeholder="Item Name"/><br><br>
+        <input type="text"  [(ngModel)]="price" placeholder="Price" /><br><br>
+        <textarea type="text"  [(ngModel)]="desc"  placeholder="Description" cols="40" rows="7"></textarea><br><br>
+        <input type="text"  [(ngModel)]="quantity" placeholder="Quantity" /><br><br>
+        <button mat-raised-button (click) = "addItem()">Add</button>
+        <br/>
+        <mat-divider></mat-divider>
+        <br/>
+        
+        <h2>Search for a product to edit:</h2>
+        <input type= "text" [(ngModel)]="searchInput"placeholder= "enter the product name">
+        <button (click) = "search()">Search</button>
+        <br/>
+        <br/>
+        
+        <div *ngIf= "editBool">
+            <br/>
+            
+            <h3>Product Name</h3>
+            <textarea type="text"  [(ngModel)]="editName"  cols="30" rows="1" ></textarea><br><br>
+            <h3>Price($)</h3>
+            <textarea type="number"  [(ngModel)]="editPrice" cols= "7" rows="1"></textarea><br><br>
+            <h3>Description</h3> 
+            <textarea type="text" [(ngModel)]="editDesc" cols="40" rows="7"></textarea><br><br>
+            <h3>Quantity</h3>
+            <textarea type="number"  [(ngModel)]="editQuantity" cols="5" rows="1"></textarea><br><br>
+            <button mat-raised-button (click) = "editItem()">Edit</button>
+            <button mat-raised-button (click) = "deleteItem()">Delete</button>
+            <br/>
+            <mat-divider></mat-divider>
+            <br/>
+        </div>
+    
+    <div *ngFor= "let product of allProducts">
+                
+    <mat-expansion-panel width="200">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+    
+          </mat-panel-title>
+          <mat-panel-description>
+                  <h3> {{product.name}} </h3>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h3 >${{product.price}}.00 each</h3>
+        <p>{{product.desc}}</p>
+        <h4>There are currently {{product.quantity}} of this fish in stock!</h4>
+        <h6 style="text-align:right"> Views: {{product.views}}</h6>
+        
+    </mat-expansion-panel>
+
+    
+    <br/>
+    
+</div>
+    
+    
+    
+    </div>
+    
+    
+</app-main-nav>

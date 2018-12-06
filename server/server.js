@@ -15,6 +15,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const Product = require('./models/product.model');
 const Users = require('./models/users.model');
+const Comment = require('./models/comment.model');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -92,10 +93,13 @@ router.route('/access/product/:product_id')
             if (err){
                  res.send(err);
             }
+            
+            console.log(product);
+            
            product.name = req.body.name;  
            product.price = req.body.price;  
            product.quantity = req.body.quantity;
-           product.views = req.body.views;
+           product.desc = req.body.desc;
          
        
 
@@ -144,6 +148,38 @@ router.route('/create/user')
     .get(function(req, res) {
         Users.find(function(err, users) {
             Users.name = req.body.name;
+            if (err){
+                 res.send(err);
+            }
+            res.json(users);
+        });
+
+    });
+
+
+router.route('/create/comment')
+
+.post(function(req, res) {
+
+              
+        var comment = new Comment();
+         comment.email = req.body.email;  
+         comment.content = req.body.content;  
+       
+    
+        
+        comment.save(function(err) {
+            if (err){
+               res.send(err);
+            }
+            res.json({ message: 'Item created!' });
+        });
+    })
+    
+    //get function
+    .get(function(req, res) {
+        Comment.find(function(err, users) {
+            Comment.name = req.body.name;
             if (err){
                  res.send(err);
             }

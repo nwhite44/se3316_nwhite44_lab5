@@ -19,14 +19,19 @@ import { LoginComponent } from './login/login.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
+import { CartComponent } from './cart/cart.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { AdminComponent } from './admin/admin.component';
 
 //Service Imports
 import {UsersService} from './services/users.service';
 import {ProductsService} from './services/products.service';
+import {CartService} from './services/cart.service';
 
 //Material Imports
-import {MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatExpansionModule} from '@angular/material';
-import { CartComponent } from './cart/cart.component';
+import {MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatExpansionModule, MatDividerModule} from '@angular/material';
+
+
 
 
 
@@ -41,7 +46,9 @@ import { CartComponent } from './cart/cart.component';
     MainNavComponent,
     ProductsComponent,
     HomeComponent,
-    CartComponent
+    CartComponent,
+    InventoryComponent,
+    AdminComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -58,6 +65,7 @@ import { CartComponent } from './cart/cart.component';
     MatIconModule,
     MatListModule,
     MatExpansionModule,
+    MatDividerModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -66,7 +74,20 @@ import { CartComponent } from './cart/cart.component';
       {
         path: 'products',
         component: ProductsComponent
+      },
+      {
+        path: 'cart',
+        component: CartComponent
+      },
+      {
+        path: 'inventory',
+        component: InventoryComponent
+      },
+       {
+        path: 'admin',
+        component: AdminComponent
       }
+      
       
       ])
     
@@ -74,7 +95,7 @@ import { CartComponent } from './cart/cart.component';
     
  
   ],
-  providers: [AuthService, UsersService, ProductsService],
+  providers: [AuthService, UsersService, ProductsService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

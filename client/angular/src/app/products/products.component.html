@@ -21,6 +21,7 @@
                     <p>{{product.desc}}</p>
                     <h4>There are currently {{product.quantity}} of this fish in stock!</h4>
                     <h6 style="text-align:right"> Views: {{product.views}}</h6>
+                    <button mat-raised-button *ngIf="isAccessLevel1()" (click)="addToCart(product.name)">Add to Cart</button>
                 </mat-expansion-panel>
         
                 
