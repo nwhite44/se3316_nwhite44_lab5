@@ -7,7 +7,7 @@
     <mat-nav-list>
       <a mat-list-item routerLink="">Home</a>
       <a mat-list-item routerLink="/products">Products</a>
-      <a *ngIf= "authService.user | async" mat-list-item href="#">Edit Inventory</a>
+      <a *ngIf="isAccessLevel2()" mat-list-item href="#">Edit Inventory</a>
       
     </mat-nav-list>
   </mat-sidenav>
@@ -21,7 +21,11 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span >Nick's Aquatic Warehouse</span>
+      
+    
+        <span>Nick's Aquatic Warehouse</span>
+         <span *ngIf="isAccessLevel2()" class="title-right" >admin</span>
+   
     </mat-toolbar>
     <ng-content></ng-content>
     

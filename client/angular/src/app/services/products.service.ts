@@ -9,6 +9,11 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
   
+  
+  testFunction(){
+    return false;
+  }
+  
   getProducts(call_back){
     
     this.http.get('/api/create/product').subscribe(products => {

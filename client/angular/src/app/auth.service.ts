@@ -23,7 +23,7 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Success!', value);
-        //firebase.auth().currentUser.sendEmailVerification().then(funciton(){alert("Please verify your email!") }
+       
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);
