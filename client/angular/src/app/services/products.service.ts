@@ -51,5 +51,14 @@ export class ProductsService {
       call_back(products);
     })
   }
+  
+   postComment( email: string, content: string, rating: number, _id: string){
+      
+       
+        return this.http.post('/api/create/comment', {'email' : email, 'content' :content, 'rating' :rating, 'item_id' :_id});
+          console.log("POST success!");
+        
+        
+  }
     
 }

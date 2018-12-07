@@ -4,6 +4,9 @@
       <div style="text-align:center">
     
         <h1>Full Catalogue!</h1>
+        
+        
+        
        
     
           <div *ngFor= "let product of allProducts">
@@ -21,7 +24,17 @@
                     <p>{{product.desc}}</p>
                     <h4>There are currently {{product.quantity}} of this fish in stock!</h4>
                     <h6 style="text-align:right"> Views: {{product.views}}</h6>
+                    
+                    
                     <button mat-raised-button *ngIf="isAccessLevel1()" (click)="addToCart(product.name)">Add to Cart</button>
+                    <div *ngIf="isAccessLevel1()">
+                      <h4>Rate this product</h4>
+                      <mat-slider min="1" max="5" step="1" thumbLabel [(ngModel)]="rating"></mat-slider>
+                      <h4>Add a comment</h4>
+                      <textarea type="text" [(ngModel)]="commentInput" cols="30" rows="4" ></textarea><br><br>
+                      <button mat-raised-button (click)="sendComment(product._id)">Send</button>
+                    
+                    </div>
                 </mat-expansion-panel>
         
                 

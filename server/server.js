@@ -164,7 +164,10 @@ router.route('/create/comment')
               
         var comment = new Comment();
          comment.email = req.body.email;  
-         comment.content = req.body.content;  
+         comment.content = req.body.content; 
+         comment.rating = req.body.rating;
+         comment.hidden = false;
+         comment.item_id = req.body.item_id;
        
     
         
@@ -186,6 +189,56 @@ router.route('/create/comment')
             res.json(users);
         });
 
+    });
+    
+router.route('/access/comment/:comment_id')
+
+    
+    .get(function(req, res) {
+        Comment.findById(req.params.comment_id, function(err, comment) {
+            if (err){
+                res.send(err);
+            }
+            res.json(comment);
+        });
+    })
+
+    .put(function(req, res) {
+
+       
+        Product.findById(req.params.product_id, function(err, comment) {
+
+            if (err){
+                 res.send(err);
+            }
+            
+            console.log(comment);
+            
+           comment.hidden = req.body.hidden;  
+         
+         
+       
+
+          
+            comment.save(function(err) {
+                if (err){
+                    res.send(err);
+                }
+                res.json({ message: 'item updated!' });
+            });
+
+        });
+    })
+ 
+    .delete(function(req, res) {
+        Comment.remove({
+            _id: req.params.comment_id
+        }, function(err, comment) {
+            if (err){
+                res.send(err);
+            }
+            res.json({ message: 'Successfully deleted' });
+        });
     });
 
 app.use('/api', router);

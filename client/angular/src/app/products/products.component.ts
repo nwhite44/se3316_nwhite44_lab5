@@ -21,6 +21,8 @@ export class ProductsComponent implements OnInit {
 
  allProducts: Products[];
  userList: Users[];
+ commentInput: string;
+ rating: number;
 
   constructor(private productsService: ProductsService, public authService: AuthService, public usersService: UsersService, public cartService: CartService) { }
 
@@ -51,6 +53,12 @@ onResponseProducts(products){
 addToCart(name: string){
     this.cartService.cartArray.push(name);
     console.log(this.cartService.cartArray.length);
+}
+
+sendComment(_id: string){
+ 
+   this.productsService.postComment(auth().currentUser.email, this.commentInput, this.rating, _id).subscribe((response)=>{});
+  
 }
 
 isAccessLevel3(){
