@@ -27,6 +27,16 @@
                     
                     
                     <button mat-raised-button *ngIf="isAccessLevel1()" (click)="addToCart(product.name)">Add to Cart</button>
+                    
+                    <div *ngFor= "let comment of commentList">
+                      <div *ngIf="checkComment(comment.item_id, product._id)">
+                        <h4>{{comment.email}}:</h4>
+                        <p> {{comment.content}}</p>
+                        <br/>
+                      </div>  
+                      
+                    </div>
+                    
                     <div *ngIf="isAccessLevel1()">
                       <h4>Rate this product</h4>
                       <mat-slider min="1" max="5" step="1" thumbLabel [(ngModel)]="rating"></mat-slider>

@@ -44,6 +44,14 @@ export class ProductsService {
         
   }
   
+    
+  getComments(call_back){
+    
+    this.http.get('/api/create/comment').subscribe(comments => {
+      call_back(comments);
+    })
+  }
+  
   
   getProducts(call_back){
     

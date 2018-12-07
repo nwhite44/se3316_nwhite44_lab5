@@ -163,6 +163,7 @@ router.route('/create/comment')
 
               
         var comment = new Comment();
+        
          comment.email = req.body.email;  
          comment.content = req.body.content; 
          comment.rating = req.body.rating;

@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
 
  allProducts: Products[];
  userList: Users[];
+ commentList: Comments[];
  commentInput: string;
  rating: number;
 
@@ -30,13 +31,17 @@ export class ProductsComponent implements OnInit {
     
      this.productsService.getProducts(this.onResponseProducts.bind(this));
      this.usersService.getUsers(this.onResponseUsers.bind(this));
-    
+     this.productsService.getComments(this.onResponseComments.bind(this));
   }
 
 onResponseUsers(users){
   this.userList = users;
 }
 
+
+onResponseComments(comments){
+  this.commentList = comments;
+}
 
 onResponseProducts(products){
     this.allProducts = products;
@@ -111,6 +116,16 @@ isAccessLevel1(){
   }
     return false;
   }
+  
+  checkComment(id1: string, id2: string){
+    
+    console.log(id1);
+    console.log(id2);
+    if(id1 == id2){
+      return true;
+    }
+    return false;
+  }
 
 }
 
@@ -129,4 +144,12 @@ interface Users{
   email: string,
   accessLevel: number
   
+}
+
+interface Comments{
+  email: string;
+  content: string;
+  rating: number;
+  hidden: boolean;
+  item_id: string;
 }
