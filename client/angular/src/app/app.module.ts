@@ -29,7 +29,7 @@ import {ProductsService} from './services/products.service';
 import {CartService} from './services/cart.service';
 
 //Material Imports
-import {MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatExpansionModule, MatDividerModule, MatSliderModule} from '@angular/material';
+import {MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatExpansionModule, MatDividerModule, MatSliderModule, MatTableModule} from '@angular/material';
 
 
 
@@ -67,6 +67,7 @@ import {MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatL
     MatExpansionModule,
     MatDividerModule,
     MatSliderModule,
+    MatTableModule,
     RouterModule.forRoot([
       {
         path: '',

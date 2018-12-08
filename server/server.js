@@ -16,6 +16,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const Product = require('./models/product.model');
 const Users = require('./models/users.model');
 const Comment = require('./models/comment.model');
+const Cart = require('./models/cart.model');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -157,6 +158,58 @@ router.route('/create/user')
     });
 
 
+router.route('/access/user/:user_id')
+
+    
+    .get(function(req, res) {
+        Users.findById(req.params.user_id, function(err, users) {
+            if (err){
+                res.send(err);
+            }
+            res.json(users);
+        });
+    })
+
+    .put(function(req, res) {
+
+       
+        Users.findById(req.params.user_id, function(err, users) {
+
+            if (err){
+                 res.send(err);
+            }
+            
+            console.log(users);
+            
+          
+           users.accessLevel = req.body.accessLevel;
+         
+       
+
+          
+            users.save(function(err) {
+                if (err){
+                    res.send(err);
+                }
+                res.json({ message: 'item updated!' });
+            });
+
+        });
+    })
+ 
+    .delete(function(req, res) {
+        Users.remove({
+            _id: req.params.users_id
+        }, function(err, users) {
+            if (err){
+                res.send(err);
+            }
+            res.json({ message: 'Successfully deleted' });
+        });
+    });
+
+
+
 router.route('/create/comment')
 
 .post(function(req, res) {
@@ -207,7 +260,7 @@ router.route('/access/comment/:comment_id')
     .put(function(req, res) {
 
        
-        Product.findById(req.params.product_id, function(err, comment) {
+        Comment.findById(req.params.comment_id, function(err, comment) {
 
             if (err){
                  res.send(err);
@@ -241,6 +294,91 @@ router.route('/access/comment/:comment_id')
             res.json({ message: 'Successfully deleted' });
         });
     });
+    
+router.route('/create/cart')
+
+.post(function(req, res) {
+
+              
+        var cart = new Cart();
+         cart.name = req.body.name;  
+         cart.price = req.body.price;  
+         cart.quantity = req.body.quantity;
+   
+       
+    
+        
+        cart.save(function(err) {
+            if (err){
+               res.send(err);
+            }
+            res.json({ message: 'Item created!' });
+        });
+    })
+    
+    //get function
+    .get(function(req, res) {
+        Cart.find(function(err, cart) {
+            Cart.name = req.body.name;
+            if (err){
+                 res.send(err);
+            }
+            res.json(cart);
+        });
+
+    });
+
+
+router.route('/access/cart/:cart_id')
+
+    
+    .get(function(req, res) {
+        Cart.findById(req.params.cart_id, function(err, cart) {
+            if (err){
+                res.send(err);
+            }
+            res.json(cart);
+        });
+    })
+
+    .put(function(req, res) {
+
+       
+        Cart.findById(req.params.cart_id, function(err, cart) {
+
+            if (err){
+                 res.send(err);
+            }
+            
+            console.log(cart);
+            
+          
+           cart.quantity = req.body.quantity;
+         
+       
+
+          
+            cart.save(function(err) {
+                if (err){
+                    res.send(err);
+                }
+                res.json({ message: 'item updated!' });
+            });
+
+        });
+    })
+ 
+    .delete(function(req, res) {
+        Cart.remove({
+            _id: req.params.cart_id
+        }, function(err, cart) {
+            if (err){
+                res.send(err);
+            }
+            res.json({ message: 'Successfully deleted' });
+        });
+    });
+
 
 app.use('/api', router);
 

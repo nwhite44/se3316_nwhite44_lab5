@@ -74,6 +74,23 @@ isAccessLevel2(){
   }
     return false;
   }
+  
+isAccessLevelExactly2(){
+
+  if(this.userList && !((auth().currentUser)== null)){
+ 
+     var iterate = this.userList;
+    for(var i = (iterate.length-1); i>=0; i--){
+      if(iterate[i].email == (auth().currentUser.email)){
+        if(iterate[i].accessLevel ==2){
+          return true;
+        }
+        
+      }
+    }
+  }
+    return false;
+  }
 
 isAccessLevel1(){
 
@@ -83,6 +100,24 @@ isAccessLevel1(){
     for(var i = (iterate.length-1); i>=0; i--){
       if(iterate[i].email == (auth().currentUser.email)){
         if(iterate[i].accessLevel >=1){
+          return true;
+        }
+        
+      }
+    }
+  }
+    return false;
+  }
+
+
+isAccessLevel0(){
+
+  if(this.userList && !((auth().currentUser)== null)){
+ 
+     var iterate = this.userList;
+    for(var i = (iterate.length-1); i>=0; i--){
+      if(iterate[i].email == (auth().currentUser.email)){
+        if(iterate[i].accessLevel == 0){
           return true;
         }
         

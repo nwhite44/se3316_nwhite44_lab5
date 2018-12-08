@@ -32,6 +32,20 @@ export class ProductsService {
         
   }
   
+   buyProduct( _id: string, quantity: number, call_back){
+    
+        //console.log(name)
+      
+       
+        this.http.put('/api/access/product/'+_id, {name : name, quantity :quantity}).subscribe(products =>{
+      
+      call_back(products);
+    })
+          
+        
+        
+  }
+  
     deleteProduct( _id: string){
     
         //console.log(name)
@@ -50,6 +64,20 @@ export class ProductsService {
     this.http.get('/api/create/comment').subscribe(comments => {
       call_back(comments);
     })
+  }
+  
+   editComment( _id: string, hidden: boolean, call_back){
+    
+      
+      
+       
+        this.http.put('/api/access/comment/'+_id, {hidden: hidden}).subscribe(comment =>{
+      
+      call_back(comment);
+    })
+          
+        
+        
   }
   
   

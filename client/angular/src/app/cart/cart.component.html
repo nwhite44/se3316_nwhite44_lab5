@@ -4,13 +4,27 @@
     
       <div *ngIf="isAccessLevel1()" style="text-align:center">
     
-        <h1>Your Cart!</h1>
-        <div *ngFor= "let cartArray of cartService.cartArray">
-          
-          <h3>{{cartArray}}</h3>
-          <br/>
-        </div>
+        <div *ngFor= "let cart of cartList">
+                        <br/>
+                       
+                        <h4>{{cart.name}}</h4>
+                        <h4>${{cart.price}}.00 each</h4>
+                        <h4>Cart Quantity: {{cart.quantity}}</h4>
+                        
+                        
+                        <br/>
+                        
+                         <button mat-raised-button (click)="decrease(cart._id, cart.quantity)">-</button>
+                         <button mat-raised-button (click)="increase(cart._id, cart.quantity, cart.name)">+</button>
+                         
+                        <mat-divider></mat-divider>
+                        <br/>
+                      
+                      
+                    </div>
             
+            <h2>Total: ${{this.total}}</h2>
+            <button mat-raised-button (click)="purchase()">Complete Purchase</button>
         </div>
 
 </app-main-nav>

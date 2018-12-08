@@ -27,6 +27,8 @@
     
         <span>Nick's Aquatic Warehouse</span>
          <span *ngIf="isAccessLevel3()" class="title-right" >admin</span>
+          <span *ngIf="isAccessLevelExactly2()" class="title-right" >employee</span>
+           <span *ngIf="isAccessLevel0()" class="title-right" >account deactivated</span>
    
     </mat-toolbar>
     <ng-content></ng-content>

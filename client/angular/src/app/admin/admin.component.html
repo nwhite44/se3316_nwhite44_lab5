@@ -2,11 +2,55 @@
     
        <app-login></app-login>  
     
-    <div *ngIf="isAccessLevel2()" style="text-align:center">
+    <div *ngIf="isAccessLevel3()" style="text-align:center">
+    <table>
+      <tr>
+        
+        <th >Access Level</th>
+        <th>Description</th> 
+      </tr>
+      <tr>
+        <td >0</td>
+        <td >Deactivated</td>
+        
+        
+       
+      </tr>
+      <tr>
+        <td>1</td>
+        <td >Customer</td>
+       
+       
+      </tr>
+      <tr>
+        <td>2</td>
+         <td >Employee</td>
+        
+      </tr>
+      <tr>
+         <td >3</td>
+          <td >Admin</td>
+      </tr>
+      
+    </table>  
+      
+    <h1>Edit Users</h1>
     
+    <div *ngFor= "let user of userList">
+        
+                      <div *ngIf="(user.email != 'nwhite44@uwo.ca')">
+                   
+                        <h4>User: {{user.email}}    --------     Access Level: {{user.accessLevel}}</h4>
+                        <button mat-raised-button (click)="demote(user._id, (user.accessLevel - 1))">Demote User</button>
+                        <button mat-raised-button (click)="promote(user._id, (user.accessLevel + 1))">Promote User</button>
+                        
+                        </div>
+                        <br/>
+                        
+                        
    
         
-    <h1>Administrative Services</h1>
+    </div>
     </div>
 
 </app-main-nav>

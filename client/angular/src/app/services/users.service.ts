@@ -26,4 +26,19 @@ export class UsersService {
     })
   }
   
+  editUser( _id: string, accessLevel: number, call_back){
+    
+  
+      
+      
+       
+        this.http.put('/api/access/user/'+_id, {'accessLevel': accessLevel}).subscribe(user =>{
+      
+      call_back(user);
+    })
+          
+        
+        
+  }
+  
 }

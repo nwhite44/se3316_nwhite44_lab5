@@ -28,6 +28,29 @@ export class AdminComponent implements OnInit {
     this.userList = users;
    
   }
+  
+  demote(_id: string, accessLevel: number){
+    
+    if(accessLevel < 0){
+      alert("You cannot demote this user any lower!")
+      return;
+    }
+    
+    this.usersService.editUser(_id, accessLevel , this.onResponse.bind(this));
+    
+    
+    
+  }
+  
+  promote(_id: string, accessLevel: number){
+    
+    if(accessLevel > 3){
+      alert("You cannot promote this user any higher!")
+      return;
+    }
+    this.usersService.editUser(_id, accessLevel , this.onResponse.bind(this));
+    
+  }
 
   
 

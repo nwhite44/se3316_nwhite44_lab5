@@ -1,6 +1,6 @@
 <app-main-nav>
     
-    
+    <app-login></app-login> 
       <div style="text-align:center">
     
         <h1>Full Catalogue!</h1>
@@ -26,12 +26,23 @@
                     <h6 style="text-align:right"> Views: {{product.views}}</h6>
                     
                     
-                    <button mat-raised-button *ngIf="isAccessLevel1()" (click)="addToCart(product.name)">Add to Cart</button>
+                    <button mat-raised-button *ngIf="isAccessLevel1()" (click)="addToCart(product._id)">Add to Cart</button>
+                    <br/>
+                    <mat-divider></mat-divider>
+                    <br/>
                     
                     <div *ngFor= "let comment of commentList">
                       <div *ngIf="checkComment(comment.item_id, product._id)">
-                        <h4>{{comment.email}}:</h4>
+                        <div *ngIf="isAccessLevel2() || !(comment.hidden)">
+                        <h4>Comment by: {{comment.email}}         Rating: {{comment.rating}}/5 stars</h4>
                         <p> {{comment.content}}</p>
+                        </div>
+                        <br/>
+                        
+                         <button mat-raised-button *ngIf="isAccessLevel2() && !(comment.hidden)" (click)="toggleComment(comment._id, comment.hidden)">Hide this comment</button>
+                         <button mat-raised-button *ngIf="isAccessLevel2() && (comment.hidden)" (click)="toggleComment(comment._id, comment.hidden)">Unhide this comment</button>
+                         
+                        <mat-divider></mat-divider>
                         <br/>
                       </div>  
                       

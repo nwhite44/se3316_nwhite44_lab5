@@ -52,6 +52,7 @@ onResponseProducts(products){
 }
 
 onResponse(){
+  this.productsService.getProducts(this.onResponseProducts.bind(this));
   
 }
   
@@ -63,6 +64,7 @@ editItem(){
   
  // console.log(this.editName)
   this.productsService.editProduct(this.edit_id, this.editName, this.editPrice, this.editDesc, this.editQuantity, this.onResponse.bind(this));
+  
 }
 
 deleteItem(){
@@ -77,7 +79,7 @@ search(){
   var iterate = this.allProducts
   
   for(var i = (iterate.length-1); i>=0; i--){
-     console.log(iterate[i].name)
+     
     
    if(iterate[i].name == this.searchInput){
      this.edit_id = iterate[i]._id;
